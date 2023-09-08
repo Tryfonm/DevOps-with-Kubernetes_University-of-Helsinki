@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Simple server</title>
+</head>
+
+<body>
+    <h3>Server started on port {{port}}</h3>
+    <img src="{{ url_for('get_image', filename=image_path.split('/')[-1]) }}" alt="Image"  width="300" height="250">
+    <form method="POST" action="/submit">
+        <input type="text" name="value" placeholder="value">
+        <input type="submit" value="Submit">
+    </form>
+    <ul>
+        <li class="todo-item">TODO 1</li>
+        <li class="todo-item">TODO 2</li>
+        <li class="todo-item">TODO 3</li>
+        <li class="todo-item">TODO 4</li>
+    </ul>
+</body>
+
+</html>

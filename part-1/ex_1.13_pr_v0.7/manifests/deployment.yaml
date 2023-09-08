@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-server-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-server
+  template:
+    metadata:
+      labels:
+        app: simple-server
+    spec:
+      volumes:
+        - name: simple-server-volume
+          persistentVolumeClaim:
+            claimName: simple-server-claim
+      containers:
+        - name: simple-server
+          image: tryfonm/simple-server:v1.12
+          volumeMounts:
+            - name: simple-server-volume
+              mountPath: /usr/src/simple-server-app/files

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: log-output-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: log-output
+  template:
+    metadata:
+      labels:
+        app: log-output
+    spec:
+      volumes: # Define volume
+          - name: shared-log-output
+            emptyDir: {}
+      containers:
+        - name: log-output-writer
+          image: tryfonm/log-output-writer:v1.10
+          volumeMounts: # Mount volume
+          - name: shared-log-output
+            mountPath: /usr/src/app/files
+        - name: log-output-reader
+          image: tryfonm/log-output-reader:v1.10
+          volumeMounts: # Mount volume
+          - name: shared-log-output
+            mountPath: /usr/src/app/files

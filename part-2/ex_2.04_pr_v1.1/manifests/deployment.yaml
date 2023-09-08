@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-frontend-dep
+  namespace: todo-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-frontend
+  template:
+    metadata:
+      labels:
+        app: todo-frontend
+    spec:
+      volumes:
+        - name: todo-frontend-volume
+          persistentVolumeClaim:
+            claimName: todo-claim
+      containers:
+        - name: todo-frontend
+          image: tryfonm/todo-frontend:v2.04
+          volumeMounts:
+            - name: todo-frontend-volume
+              mountPath: /usr/src/todo-app/files
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-backend-dep
+  namespace: todo-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-backend
+  template:
+    metadata:
+      labels:
+        app: todo-backend
+    spec:
+      volumes:
+        - name: todo-backend-volume
+          persistentVolumeClaim:
+            claimName: todo-claim
+      containers:
+        - name: todo-backend
+          image: tryfonm/todo-backend:v2.04
+          volumeMounts:
+            - name: todo-backend-volume
+              mountPath: /usr/src/todo-app/files
