@@ -1,0 +1,9 @@
+## As an alternative to reading from file
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: ping-pong-configmap
+#   namespace: ping-pong-ns
+# data:
+#   serverconfig.txt: |
+#     MESSAGE=Hello
