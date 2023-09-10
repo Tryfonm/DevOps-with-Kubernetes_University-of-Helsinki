@@ -11,5 +11,5 @@ spec:
         spec:
           containers:
           - name: todo-random-wiki
-            image: tryfonm/todo-random-wiki:v2.09
+            image: tryfonm/todo-random-wiki:v2.10
           restartPolicy: Never

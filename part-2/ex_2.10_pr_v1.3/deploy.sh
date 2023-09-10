@@ -1,23 +1,23 @@
 #!/bin/bash
 
-# k3d cluster delete --all                                                        # delete; if required
-# k3d cluster create --port 8082:30080@agent:0 -p 8088:80@loadbalancer --agents 2 # expose agent:0 and loadbalancer  # to create with exposed ports
+k3d cluster delete --all                                                        # delete; if required
+k3d cluster create --port 8082:30080@agent:0 -p 8088:80@loadbalancer --agents 2 # expose agent:0 and loadbalancer  # to create with exposed ports
 docker exec k3d-k3s-default-agent-0 mkdir -p /tmp/kube/shared-image             # allocate space for the shared image
 docker exec k3d-k3s-default-agent-0 mkdir -p /tmp/kube/postgres                 # allocate space for the database | even if the container goes down the db data persists
 
 docker container prune -f
-docker rmi tryfonm/todo-frontend:v2.09
-docker rmi tryfonm/todo-backend:v2.09
-docker rmi tryfonm/postgres:v2.09
+docker rmi tryfonm/todo-frontend:v2.10
+docker rmi tryfonm/todo-backend:v2.10
+docker rmi tryfonm/postgres:v2.10
 
-docker build -t tryfonm/todo-frontend:v2.09 -f todo-frontend.Dockerfile .
-docker push tryfonm/todo-frontend:v2.09
-docker build -t tryfonm/todo-backend:v2.09 -f todo-backend.Dockerfile .
-docker push tryfonm/todo-backend:v2.09
-docker build -t tryfonm/postgres:v2.09 -f postgres.Dockerfile .
-docker push tryfonm/postgres:v2.09
-docker build -t tryfonm/todo-random-wiki:v2.09 -f todo-random-wiki.Dockerfile .  #d elete
-docker push tryfonm/todo-random-wiki:v2.09  # delete
+docker build -t tryfonm/todo-frontend:v2.10 -f todo-frontend.Dockerfile .
+docker push tryfonm/todo-frontend:v2.10
+docker build -t tryfonm/todo-backend:v2.10 -f todo-backend.Dockerfile .
+docker push tryfonm/todo-backend:v2.10
+docker build -t tryfonm/postgres:v2.10 -f postgres.Dockerfile .
+docker push tryfonm/postgres:v2.10
+docker build -t tryfonm/todo-random-wiki:v2.10 -f todo-random-wiki.Dockerfile .  #d elete
+docker push tryfonm/todo-random-wiki:v2.10  # delete
 
 # Ecrypt the secret
 # age-keygen -o key.txt

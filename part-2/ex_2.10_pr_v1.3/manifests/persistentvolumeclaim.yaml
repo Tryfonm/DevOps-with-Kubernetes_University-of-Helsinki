@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: todo-claim
+  namespace: todo-ns
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  volumeName: todo-pv
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-claim
+  namespace: todo-ns
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  volumeName: postgres-pv
+  resources:
+    requests:
+      storage: 1Gi
