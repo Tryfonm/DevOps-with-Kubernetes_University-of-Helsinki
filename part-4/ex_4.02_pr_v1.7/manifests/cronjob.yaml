@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: todo-random-wiki
+  namespace: todo-ns
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: todo-random-wiki
+            image: tryfonm/todo-random-wiki:v4.02
+          restartPolicy: Never

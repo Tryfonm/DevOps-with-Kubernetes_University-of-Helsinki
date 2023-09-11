@@ -5,16 +5,16 @@ k3d cluster create --port 8082:30080@agent:0 -p 8088:80@loadbalancer --agents 2 
 docker exec k3d-k3s-default-agent-0 mkdir -p /tmp/kube  # creating the /tmb/kube within the node
 
 docker container prune -f
-docker rmi tryfonm/ping-pong:v2.07
-docker rmi tryfonm/log-output:v2.07
-docker rmi tryfonm/postgres:v2.07
+docker rmi tryfonm/ping-pong:v4.01
+docker rmi tryfonm/log-output:v4.01
+docker rmi tryfonm/postgres:v4.01
 
-docker build -t tryfonm/ping-pong:v2.07 -f ping-pong.Dockerfile .
-docker build -t tryfonm/log-output:v2.07 -f log-output.Dockerfile .
-docker build -t tryfonm/postgres:v2.07 -f postgres.Dockerfile .
-docker push tryfonm/ping-pong:v2.07
-docker push tryfonm/log-output:v2.07
-docker push tryfonm/postgres:v2.07
+docker build -t tryfonm/ping-pong:v4.01 -f ping-pong.Dockerfile .
+docker build -t tryfonm/log-output:v4.01 -f log-output.Dockerfile .
+docker build -t tryfonm/postgres:v4.01 -f postgres.Dockerfile .
+docker push tryfonm/ping-pong:v4.01
+docker push tryfonm/log-output:v4.01
+docker push tryfonm/postgres:v4.01
 
 # Ecrypt the secret
 # age-keygen -o key.txt
